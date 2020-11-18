@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Main from './containers/Main';
+import SearchResult from "./containers/SearchResult";
+import Footer from "./components/Footer";
+import ToastCard from "./components/ToastCard";
+import store from "./store";
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Header />
+            <Route exact path="/" component={Main} />
+            <Route exact path="/report" component={SearchResult} />
+            <ToastCard />
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
   );
 }
 
